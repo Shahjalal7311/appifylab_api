@@ -29,7 +29,7 @@ class PostRepository
 
   public function toggleVisibility(Post $post): Post
   {
-    $post->visibility = $post->visibility === 1 ? 0 : 1;
+    $post->visibility = ! $post->visibility;
     $post->save();
     return $post;
   }

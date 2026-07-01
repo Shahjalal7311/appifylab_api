@@ -16,6 +16,7 @@ class Post extends Model implements HasMedia
   protected $fillable = ['user_id', 'content', 'visibility'];
 
   protected $casts = [
+    'visibility'  => 'boolean',
     'created_at' => 'datetime:Y-m-d H:i:s',
     'updated_at' => 'datetime:Y-m-d H:i:s',
   ];

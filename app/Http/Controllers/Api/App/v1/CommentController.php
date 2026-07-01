@@ -24,7 +24,7 @@ class CommentController extends ApiController
     try {
       $authUserId = $this->user->id;
       $post = Post::findOrFail($postId);
-      if ($post->visibility == 0 && $post->user_id !== $authUserId) {
+      if ($post->visibility == false && $post->user_id !== $authUserId) {
         return $this->errorResponse(['error' => 'This post is private.'], 403);
       }
       $comments = $post->comments()
@@ -40,7 +40,7 @@ class CommentController extends ApiController
   {
     try {
       $post = Post::findOrFail($postId);
-      if ($post->visibility == 0 && $post->user_id !== $this->user->id) {
+      if ($post->visibility == false && $post->user_id !== $this->user->id) {
         return $this->errorResponse(['error' => 'This post is private.'], 403);
       }
       $comment = $this->commentRepository->store($this->user, $post, $request->body);
@@ -58,7 +58,7 @@ class CommentController extends ApiController
   {
     try {
       $comment = Comment::findOrFail($commentId);
-      if ($comment->post->visibility == 0 && $comment->post->user_id !== $this->user->id) {
+      if ($comment->post->visibility == false && $comment->post->user_id !== $this->user->id) {
         return $this->errorResponse(['error' => 'This post is private.'], 403);
       }
       if (!is_null($comment->parent_id)) {
