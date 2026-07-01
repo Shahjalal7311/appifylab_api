@@ -20,7 +20,7 @@ class CommentResource extends JsonResource
           'last_name'  => $this->user->last_name,
         ],
         'likes_count' => $this->likes->count(),
-        'is_liked'    => $this->likes->contains('user_id', $this->user_id),
+        'is_liked'    => $this->likes->contains('user_id', auth()->id()),
         'replies'     => CommentResource::collection($this->whenLoaded('replies')),
         'created_at'  => $this->created_at->toIso8601String(),
     ];
