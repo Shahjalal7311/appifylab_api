@@ -26,4 +26,11 @@ class PostRepository
       throw new \Exception('Failed to create post: ' . $e->getMessage());
     }
   }
+
+  public function toggleVisibility(Post $post): Post
+  {
+    $post->visibility = $post->visibility === 1 ? 0 : 1;
+    $post->save();
+    return $post;
+  }
 }

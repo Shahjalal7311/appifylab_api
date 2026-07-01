@@ -17,6 +17,7 @@ class PostResource extends JsonResource
         'thumbnail_url' => $this->getFirstMedia('post_thumbnail')->getUrl(),
       ] : null,
       'visibility'   => $this->visibility,
+      'is_owner'     => $this->user_id === auth()->id(),
       'user'       => [
         'avatar'     => null,
         'full_name'  => $this->user->first_name . ' ' . $this->user->last_name,

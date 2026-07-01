@@ -59,4 +59,27 @@ class PostController extends ApiController
     }
   }
 
+  /**
+   * Toggle a post's visibility between public and private.
+   * Only the post's owner may change it.
+   */
+  public function toggleVisibility($postId)
+  {
+    try {
+      $post = Post::findOrFail($postId);
+      if ($post->user_id !== $this->user->id) {
+        return $this->errorResponse(['error' => 'You can only change the visibility of your own posts.'], 403);
+      }
+      $post = $this->postRepository->toggleVisibility($post);
+      $post->load(['user', 'likes', 'media']);
+
+      return $this->successResponse([
+        'message' => 'Post visibility updated.',
+        'post'    => new PostResource($post),
+      ]);
+    } catch (\Exception $e) {
+      return $this->errorResponse(['error' => 'Failed to update post visibility.'], 500);
+    }
+  }
+
 }

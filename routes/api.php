@@ -19,6 +19,7 @@ Route::prefix('app/v1')->group(function () {
       Route::get('/{postId}/likers', [LikeController::class, 'postLikers']);
       Route::get('/{postId}/comments', [CommentController::class, 'index']);
       Route::post('/{postId}/like', [LikeController::class, 'togglePostLike']);
+      Route::post('/{postId}/visibility', [PostController::class, 'toggleVisibility']);
       Route::post('/{postId}/comments', [CommentController::class, 'store']);
     });
 
