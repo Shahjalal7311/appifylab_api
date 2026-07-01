@@ -1,14 +1,11 @@
+## Generate application key
+ ```
+ php artisan key:generate
+ ```
+
 ## Generate jwt secret
  ```
  php artisan jwt:secret
- ```
-
-
-## Swagger config
-Generate Swagger api doc  
-
- ```
- php artisan l5-swagger:generate
  ```
 
 ## Telescope Configuration
@@ -35,31 +32,6 @@ After making changes to the Telescope and env configuration, make sure to clear 
   - php artisan config:clear
   - php artisan cache:clear
   ```
-
-## Basic Data seeding
-To seed the database with basic data, run the following command:
-  - php artisan db:seed --class=Database\\Seeders\\App\\ContentSeeder
-  - php artisan db:seed --class=Database\\Seeders\\App\\SuggestionSeeder
-  - php artisan db:seed --class=Database\\Seeders\\App\\OurPartnerSeeder
-
-
-## Firestore Configuration
-To configure Firestore, you need to set up the following environment variables in your `.env` file:
-```bash
-#install 
-composer require google/cloud-firestore
-composer require google/auth
-# Firestore Configuration
-FIRESTORE_PROJECT_ID=your-project-id
-
-
-**Store your Firebase credentials file at:**
-
-```
-storage/app/firebase/credentials.json
-```
-
-```
 
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
